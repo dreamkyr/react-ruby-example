@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>
+    Incidents
+    <%= link_to 'New Incident', new_incident_path, class: "btn btn-primary" %>
+  </h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Text</th>
+        
+        <th>Rating</th>
+        <th>Location</th>
+        <th>Added</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @incidents.each do |incident| %>
+        <tr>
+          <td><%= link_to incident.slug, incident %></td>
+          <td><%= truncate(incident.text, length: 30) %></td>
+          <td>
+            <span class="mr-2"><%= incident.rating %></span>
+            <% incident.rating.times do %>
+              <i class="fa fa-star text-primary"></i>
+            <% end %>
+          </td>
+          <td><%= incident.location %></td>
+          <td><%= incident.created_at.strftime("%D %l:%M %P") %></td>
+          <td><%= link_to '', edit_incident_path(incident), class: "fa fa-pencil text-muted" %></td>
+          <!-- <td><%= link_to 'Destroy', incident, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @incidents %>
+
+  
+</div>

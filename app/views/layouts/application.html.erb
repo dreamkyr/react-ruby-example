@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>Raheem</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <script src="//maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials[Rails.env.to_sym][:google_map_key] %>&libraries=places"></script>
+
+    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'application' %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand navbar-light fixed-top bg-light">
+      <a class="navbar-brand text-primary" href="<%= root_path %>">Raheem</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="<%= new_incident_path %>">File Report</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="tel:18005551212">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="tel:18005551212">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main">
+      <%= render "/shared/messages" %>
+      <%= yield %>
+    </main>
+
+    <%= render "/shared/footer" %>
+  </body>
+</html>

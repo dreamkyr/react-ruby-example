@@ -1,0 +1,24 @@
+{
+  "resources": [
+    {
+      "name": "Tags",
+      "explanation": null,
+      "examples": [
+        {
+          "description": "Get All Tags",
+          "link": "tags/get_all_tags.json",
+          "groups": "all",
+          "route": "/api/v1/tags/",
+          "method": "get"
+        },
+        {
+          "description": "Suggested Tags",
+          "link": "tags/suggested_tags.json",
+          "groups": "all",
+          "route": "/api/v1/tags/suggested",
+          "method": "get"
+        }
+      ]
+    }
+  ]
+}

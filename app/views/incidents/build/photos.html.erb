@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="mt-3 mb-3">
+        <div class="media">
+          <img class="mr-3 rounded-circle" src="<%= image_url("brandon.jpg")%>" width="72" alt="Brandon Anderson">
+          <div class="media-body">
+            <span class="font-weight-bold">Are there any photos or video of the incident?</span>
+            <br>
+            These images are kept private and won't be shared with anyone unless you choose to do so.
+          </div>
+        </div>
+      </div>
+
+      <%= form_with(model: @incident, local: true, url: wizard_path, id: "incident-form", html: {"data-parsley-validate" => ""}) do |form| %>
+
+        <div class="form-group">
+          <label>Upload Photos or Videos</label>
+          <br>
+          <%= form.hidden_field :slug %>
+
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-text small text-muted mb-3">
+            You can upload up to 5 photos or videos.
+          </div>
+          <div class="progress mt-4 mb-3" style="height: 4px;">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <%= form.submit "Next", class: "btn btn-primary btn-lg text-uppercase btn-block" %>
+        </div>
+      <% end %>
+    </div>  
+  </div>
+</div>
+

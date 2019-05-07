@@ -1,0 +1,37 @@
+<p class="lead mt-3">
+  <%= incident.text %>
+</p>
+
+<p class="lead text-primary">
+  <%= incident.tags_list %>
+</p>
+
+<% if incident.has_rating? %>
+  <p class="lead">
+    <% incident.rating.times do %>
+      <i class="fa fa-star text-primary"></i>
+    <% end %>
+    <% (5 - incident.rating).times do %>
+      <i class="fa fa-star text-black-50"></i>
+    <% end %>
+  </p>
+<% end %>
+
+<hr>
+
+<p class="mb-0">
+  <% if incident.date %>
+    <%= incident.date.strftime("%B %e, %Y - %l:%M %P") %>
+  <% end %>
+  <% if incident.location %>
+    <i class="fa fa-map-marker text-primary ml-1 mr-1"></i>
+    <%= incident.location %>
+  <% end %>
+</p>
+
+<p class="small text-muted">
+  <%= link_to incident do %>
+    Posted <%= time_ago_in_words(incident.created_at) %> ago
+  <% end %>
+  by Anonymous
+</p>

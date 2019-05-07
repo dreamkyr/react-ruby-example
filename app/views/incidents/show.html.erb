@@ -1,0 +1,99 @@
+<div class="container">
+	<p class="lead mt-3">
+	  <%= @incident.text %>
+	</p>
+
+	<p class="lead text-primary">
+		<%= @incident.tags_list %>
+	</p>
+
+	<% if @incident.has_rating? %>
+    <p class="lead">
+      <% @incident.rating.times do %>
+        <i class="fa fa-star text-primary"></i>
+      <% end %>
+      <% (5 - @incident.rating).times do %>
+        <i class="fa fa-star text-black-50"></i>
+      <% end %>
+    </p>
+  <% end %>
+	
+	<hr>
+	
+  <p class="text-primary">
+    <% if @incident.category.present? %>
+      <%= @incident.category %>
+      <br>
+    Officer 
+    <% if @incident.officer_name %>
+      <%= @incident.officer_name %>
+    <% end %>
+    <% if @incident.officer_badge_number %>
+      #<%= @incident.officer_badge_number %>
+    <% end %>
+    <% if @incident.officer_race_display %>
+      <%= @incident.officer_race_display %><% if @incident.officer_gender %>, <%= @incident.officer_gender %><% end %>
+    <% end %>
+    <% end %>
+  </p>
+  <p class="mb-0">
+  	<% if @incident.date %>
+ 	  	<%= @incident.date.getlocal.strftime("%B %e, %Y - %l:%M %P") %>
+ 	  <% end %>
+ 	  <% if @incident.location %>
+ 	  	<i class="fa fa-map-marker text-primary ml-1 mr-1"></i>
+ 	  	<%= @incident.location %>
+ 	  <% end %>
+  </p>
+
+  <p class="small text-muted">
+    Added <%= time_ago_in_words(@incident.created_at) %> ago by Anonymous
+  </p>
+
+	
+	<div class="row mt-5">
+		<div class="col-md-5 col-lg-5">
+      <button type="button" class="btn btn-block btn-primary btn-lg btn-pill text-uppercase mb-3" data-toggle="modal" data-target="#fileComplaintModal">
+        File Official Complaint
+      </button>
+	  </div>
+	  <div class="col-md-5 col-lg-5">
+		  <a class="btn btn-block btn-outline-primary btn-lg btn-pill text-uppercase" href="<%= edit_incident_path(@incident) %>">
+		  	Add More Details
+		  </a>
+		 </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="fileComplaintModal" tabindex="-1" role="dialog" aria-labelledby="fileComplaintModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fileComplaintModalLabel">File Official Complaint</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="media">
+          <img class="mr-3 rounded-circle" src="<%= image_url("brandon.jpg")%>" width="72" alt="Brandon Anderson">
+          <div class="media-body">
+            <p>I want to thank you for sharing your story. Let's turn your story into action.</p>
+            
+            <p>We’ll help you file an official complaint with your local precinct.</p>
+            
+            <p>This service is completely free and we’ll do all the legal work for you.</p>
+            <h3 class="font-weight-light">
+              Your report link is <span class="text-primary font-weight-bold"><%= @incident.slug %></span>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-lg btn-block">Call 1-800-555-1212</button>
+      </div>
+    </div>
+  </div>
+</div>

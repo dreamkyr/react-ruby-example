@@ -1,0 +1,35 @@
+<div class="jumbotron jumbotron-fluid bg-white">
+	<div class="container">
+	  <h1 class="font-weight-black mb-3 mb-lg-5">
+	  	Raheem helps you report police harrasment
+	  </h1>
+	  <p class="lead">
+	  	Stopped by the cops and have an issue?
+			Call Raheem to report harrassment.
+		</p>
+		<p class="lead">
+			Raheem is completely <span class="text-primary font-weight-bold">free</span> and <span class="text-primary font-weight-bold">private</span>.
+		</p>
+		<p class="lead">
+			Raheem is built by folks who want to hear your story.
+	  </p>
+	  <div class="row mt-5">
+	  	<div class="col-md-5 col-lg-4">
+	  		<a class="btn btn-block btn-primary btn-lg btn-pill text-uppercase" href="<%= new_incident_path %>">File Your Report</a>
+	  </div>
+	  </div>
+  </div>
+</div>
+
+<section class="mt-5">
+	<div class="container">
+		<h2>Recent Reports</h2>
+		<div class="row">
+			<% @incidents.each do |incident| %>
+				<div class="col-lg-4">
+					<%= render partial: "/incidents/incident", locals: {incident: incident} %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</section>

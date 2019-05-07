@@ -1,0 +1,51 @@
+$( document ).ready(function() {
+  $("#incident_location").geocomplete()
+    .bind("geocode:result", function(event, result){
+      console.log("Result: " + JSON.stringify(result));
+      geometry_location = result.geometry.location;
+      $('#incident_latitude').val(geometry_location.lat());
+      $('#incident_longitude').val(geometry_location.lng());
+    })
+    .bind("geocode:error", function(event, status){
+      console.log("ERROR: " + status);
+    })
+    .bind("geocode:multiple", function(event, results){
+      console.log("Multiple: " + results.length + " results found");
+    });
+  
+  function alertMyPosition(position) {
+    latitude = position.coords.latitude
+    longitude = position.coords.longitude
+    console.log("Your position is " + latitude + ", " + longitude);
+    $.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+ latitude +','+ longitude +'&key=<%= Rails.application.credentials[Rails.env.to_sym][:google_map_key] %>')
+      .done(function(data) {
+        $("#incident_location").val(data.results[0].formatted_address);
+        $('#incident_latitude').val(latitude);
+        $('#incident_longitude').val(longitude);
+      })
+      .fail(function() {
+        console.log("ERROR: Physical address not found");
+      });
+    
+  }
+
+  function noLocation(error) {
+    $("#location-error").text("No location info available. Error code: " + error.code)
+  }
+
+  $('#getPositionButton').on('click', function() {
+    $.geolocation.get({win: alertMyPosition, fail: noLocation});
+  });
+
+
+  $("#incident-form").parsley({
+     excluded: 'input[type=submit]',
+     inputs: 'input, textarea, select, input[type=hidden]',
+     errorClass: 'is-invalid',
+     successClass: 'is-valid', // Comment this option if you don't want the field to become green when valid. Recommended in Google material design to prevent too many hints for user experience. Only report when a field is wrong.
+     errorsWrapper: '<div class="invalid-feedback"></div>',
+     errorTemplate: '<span></span>',
+     trigger: 'change'
+   })
+
+});

@@ -1,0 +1,49 @@
+{
+  "resource": "Tags",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "/api/v1/tags/",
+  "description": "Get All Tags",
+  "explanation": null,
+  "parameters": [
+    {
+      "name": "page",
+      "description": "Page Number"
+    },
+    {
+      "name": "query",
+      "description": "Search for tag name, optional"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/api/v1/tags/?query=a",
+      "request_body": null,
+      "request_headers": {
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+        "query": "a"
+      },
+      "request_content_type": null,
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"status\": 200,\n  \"pagination\": {\n    \"page\": 1,\n    \"total_pages\": 1,\n    \"count\": 1\n  },\n  \"data\": [\n    {\n      \"name\": \"a\"\n    }\n  ]\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"33a9dcf04423d98903200280043eca89\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "2d9198d1-dd80-4933-9c96-38ad644b60c6",
+        "X-Runtime": "0.034114",
+        "Content-Length": "86"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

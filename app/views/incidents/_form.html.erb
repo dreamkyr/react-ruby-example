@@ -1,0 +1,34 @@
+<%= form_with(model: incident, local: true) do |form| %>
+  <% if incident.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(incident.errors.count, "error") %> prohibited this incident from being saved:</h2>
+
+      <ul>
+      <% incident.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <!-- <%= form.label :text %> -->
+    <%= form.text_area :text, class: "form-control", placeholder: "I was stopped by the cops when…", autofocus: true %>
+    <div class="form-text medium">
+      <a href="#" class="text-info">See an example</a>
+    </div>
+  </div>
+
+  <div class="form-check">
+    <%= form.check_box :featured, class: "form-check-input" %>
+    <%= form.label :featured, class: "form-check-label" %>
+  </div
+
+  <div class="form-group">
+    <% if incident.new_record? %>
+      <%= form.submit "Next", class: "btn btn-primary btn-lg text-uppercase btn-block" %>
+    <% else %>
+    <%= form.submit %>
+    <% end %>
+  </div>
+<% end %>

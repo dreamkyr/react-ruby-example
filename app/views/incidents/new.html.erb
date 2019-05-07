@@ -1,0 +1,61 @@
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-lg-6 col-md-8">
+			<div class="mt-3 mb-3">
+				<div class="media">
+				  <img class="mr-3 rounded-circle" src="<%= image_url("brandon.jpg")%>" width="72" alt="Brandon Anderson">
+				  <div class="media-body">
+				    Hi I’m Brandon, and I’ll help you file your report.
+            <br>
+            I have a few questions to help us get started.
+						<br>
+				  </div>
+				</div>
+			</div>
+			<%= form_with(model: @incident, local: true, id: "incident-form") do |form| %>
+			  <% if @incident.errors.any? %>
+			    <div id="error_explanation">
+			      <h2><%= pluralize(@incident.errors.count, "error") %> prohibited this incident from being saved:</h2>
+
+			      <ul>
+			      <% @incident.errors.full_messages.each do |message| %>
+			        <li><%= message %></li>
+			      <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
+
+        <div class="form-group">
+          <label>Where did this happen?</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <a href="javascript:void(0)" id="getPositionButton"><i class="fa fa-location-arrow" aria-hidden="true"></i></a>
+              </span>
+            </div>
+            <%= form.text_field :location, class: 'form-control', placeholder: "123 Main St, City, Zip", required: true, "data-parsley-required-message": "Location is required." %>
+            <%= form.hidden_field :latitude %>
+            <%= form.hidden_field :longitude %>
+          </div>
+          <div class="form-text text-muted small">
+            You can input street address, intersection or business name.
+          </div>
+          <div class="form-text text-danger small" id="location-error">
+            
+          </div>
+        </div>
+
+			  <div class="form-group">
+			  	<div class="form-text small text-muted mb-3">
+			      Your report will be completely anonymous.
+			    </div>
+			    <div class="progress mt-4 mb-3" style="height: 4px;">
+		        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+		      </div>
+			    <%= form.submit "Next", class: "btn btn-primary btn-lg text-uppercase btn-block" %>
+			  </div>
+			<% end %>
+
+		</div>	
+	</div>
+</div>

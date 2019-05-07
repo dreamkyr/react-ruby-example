@@ -1,0 +1,52 @@
+{
+  "resource": "Tags",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "/api/v1/tags/suggested",
+  "description": "Suggested Tags",
+  "explanation": null,
+  "parameters": [
+    {
+      "name": "page",
+      "description": "Page Number"
+    },
+    {
+      "name": "min_rating",
+      "description": "Minimum Rating, defaults to 1"
+    },
+    {
+      "name": "max_rating",
+      "description": "Maximum Rating, defaults to 5"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/api/v1/tags/suggested",
+      "request_body": null,
+      "request_headers": {
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": null,
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"status\": 200,\n  \"pagination\": {\n    \"page\": 1,\n    \"total_pages\": 1,\n    \"count\": 16\n  },\n  \"data\": [\n    {\n      \"id\": 1,\n      \"name\": \"Disrespected\"\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Scared\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Embarrassed\"\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Intimidated\"\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Angry\"\n    },\n    {\n      \"id\": 6,\n      \"name\": \"Ignored\"\n    },\n    {\n      \"id\": 7,\n      \"name\": \"Disappointed\"\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Relieved\"\n    },\n    {\n      \"id\": 9,\n      \"name\": \"Ignored\"\n    },\n    {\n      \"id\": 10,\n      \"name\": \"Satisfied\"\n    },\n    {\n      \"id\": 11,\n      \"name\": \"Frustrated\"\n    },\n    {\n      \"id\": 12,\n      \"name\": \"Protected\"\n    },\n    {\n      \"id\": 13,\n      \"name\": \"Relieved\"\n    },\n    {\n      \"id\": 14,\n      \"name\": \"Safe\"\n    },\n    {\n      \"id\": 15,\n      \"name\": \"Comforted\"\n    },\n    {\n      \"id\": 16,\n      \"name\": \"Heard\"\n    }\n  ]\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"8391603025ee4cae19b3af57a8c2cdb7\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "d70ab4f9-d162-4704-875e-03798e69a9ca",
+        "X-Runtime": "0.019292",
+        "Content-Length": "518"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-lg-6 col-md-8">
+
+			<%= form_with(model: @incident, local: true, id: "incident-form", html: {"data-parsley-validate" => ""}) do |form| %>
+
+        <%= form.hidden_field :rating %>
+        <%= form.hidden_field :tags_list %>
+  			
+				<%= react_component("IncidentRateTag", { tags: @incident.tags , rating: @incident.rating}) %>
+  			
+  			<div class="form-group">
+          <div class="progress mt-4 mb-3" style="height: 4px;">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+      		<%= form.submit "Next", class: "btn btn-primary btn-lg text-uppercase btn-block" %>
+  			</div>
+
+			<% end %>
+		</div>	
+	</div>
+</div>
